@@ -24,6 +24,16 @@ public class King extends Piece {
 
 	@Override
 	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill, Chessboard board) {
-		return false;
+		int x = Math.abs(originX - targetX);
+        int y = Math.abs(originY - targetY);
+        
+        // Le roi peut se déplacer par une case dans toutes les directions.
+        // Faut vérifier qu'il sera pas en cas d'exhec et mat
+        if((x<2 && y<2) && (x==1 || y==1)) {
+            return true;
+        }
+        
+        
+    	return false;
 	}
 }
