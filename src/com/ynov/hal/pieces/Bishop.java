@@ -2,7 +2,9 @@
 // ont été regroupée dans un "package" séparé qui est un sous-dossier du dossier "hal"
 package com.ynov.hal.pieces;
 
+import com.ynov.hal.Cell;
 import com.ynov.hal.ChessColor;
+import com.ynov.hal.Chessboard;
 import com.ynov.hal.StdDraw;
 
 // La classe "Bishop" HERITE des attributs et des méthodes de la classe "Piece" 
@@ -34,8 +36,45 @@ public class Bishop extends Piece {
 	}
 	
 	@Override
-	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
-		return false;
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill, Chessboard board) {
+		int x = Math.abs(originX - targetX);
+        int y = Math.abs(originY - targetY);
+        int i,j;
+        board.displayMatrix();
+        Cell cell;
+        
+        
+        
+        // Mouvement en diagonale.
+        if(x==y) { 
+        	while(originX!=targetX && originY!=targetY && originX<8 && originY<8 && originX>=0 && originY>=0) {
+        		if(originX<targetX) {
+        			originX++;
+        		} 
+ 
+        		if(originX>targetX) {
+        			originX--;
+        		}
+
+        		if(originY<targetY) {
+        			originY++;
+        		}
+        		
+        		if(originY>targetY) {
+        			originY--;
+        		}
+        		
+        		cell = board.getCell(originX,originY);
+        		if(cell.getPiece()!=null) {
+        			System.out.println("ERRROR cell isn't null! blockage par une autre piece =="+cell.getPiece());
+        			return false;
+        		}
+        		
+        	}
+        	return true;
+        	
+        } 
+        return false;
 	}
 
 }

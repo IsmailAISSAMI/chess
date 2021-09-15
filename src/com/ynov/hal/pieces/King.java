@@ -1,6 +1,7 @@
 package com.ynov.hal.pieces;
 
 import com.ynov.hal.ChessColor;
+import com.ynov.hal.Chessboard;
 import com.ynov.hal.StdDraw;
 
 public class King extends Piece {
@@ -22,7 +23,7 @@ public class King extends Piece {
 	}
 
 	@Override
-	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill, Chessboard board) {
 		return false;
 	}
 }

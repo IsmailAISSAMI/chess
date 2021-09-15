@@ -1,6 +1,7 @@
 package com.ynov.hal.pieces;
 
 import com.ynov.hal.ChessColor;
+import com.ynov.hal.Chessboard;
 
 // "Piece" est une classe ABSTRAITE car il n'est pas possible d'utiliser "new"
 // pour créer un objet de cette classe. En effet, un objet de cette classe
@@ -26,7 +27,7 @@ public abstract class Piece {
 	
 	// La méthode "checkMove" est ABSTRAITE,
 	// puisque pour chaque pièce nous avant des règles de mouvement different.
-	public abstract boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill);
+	public abstract boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill, Chessboard board);
 
 	// On SURCHARGE la méthode "toString" pour qu'elle retourne juste un caractère
 	//

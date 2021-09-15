@@ -132,6 +132,22 @@ public class Chessboard {
 			}
 		}
 	}
+	
+	public void displayMatrix() {
+		Cell cell;
+		
+		for (int y = 7; y  >= 0; y--) {
+			for (int x = 7; x >= 0; x--) {
+				cell = this.getCell(x,y);
+				if(cell==null) {
+					System.out.print("-nu-");
+				} else {
+					System.out.print("-"+cell.getPiece()+"  -");
+				}
+			}
+			System.out.println("");
+		}
+	}
 
 	public Cell getCell(int x, int y) {
 		return this.matrix[x][y];

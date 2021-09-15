@@ -112,7 +112,7 @@ public class Game {
             return null;
         }
 		else {
-			boolean canMove = origin.getPiece().checkMove(origin.getX(), origin.getY(), x, y, toKill);
+			boolean canMove = origin.getPiece().checkMove(origin.getX(), origin.getY(), x, y, toKill, board);
 			if(canMove) {
 				cell.select();
 				board.display();
