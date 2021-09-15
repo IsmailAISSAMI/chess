@@ -40,7 +40,7 @@ public class Bishop extends Piece {
 		int x = Math.abs(originX - targetX);
         int y = Math.abs(originY - targetY);
         int i,j;
-        board.displayMatrix();
+        //board.displayMatrix();
         Cell cell;
         
         // Mouvement en diagonale.
