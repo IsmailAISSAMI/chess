@@ -43,8 +43,6 @@ public class Bishop extends Piece {
         board.displayMatrix();
         Cell cell;
         
-        
-        
         // Mouvement en diagonale.
         if(x==y) { 
         	while(originX!=targetX && originY!=targetY && originX<8 && originY<8 && originX>=0 && originY>=0) {
