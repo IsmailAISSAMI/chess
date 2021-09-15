@@ -21,4 +21,11 @@ public class Knight extends Piece {
 		return "C" + super.toString();
 	}
 
+	@Override
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
+		int x = Math.abs(originX - targetX);
+        int y = Math.abs(originY - targetY);
+        System.out.println("[CALC] x="+x+", y="+y+", checkMove="+(x*y)+" - Knight");
+        return x * y == 2;
+	}
 }

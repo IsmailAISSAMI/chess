@@ -21,4 +21,8 @@ public class King extends Piece {
 		return "R" + super.toString();
 	}
 
+	@Override
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
+		return false;
+	}
 }

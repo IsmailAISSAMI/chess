@@ -32,5 +32,10 @@ public class Bishop extends Piece {
 		// classe mère
 		return "F" + super.toString();
 	}
+	
+	@Override
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
+		return false;
+	}
 
 }

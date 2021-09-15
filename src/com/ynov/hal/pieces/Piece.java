@@ -23,6 +23,10 @@ public abstract class Piece {
 	// une pièce, mais, comme la forme des pièces change, il n'est pas possible
 	// de donner le code d'affichage dans la super-classe (classe mère).
 	public abstract void display(int x, int y);
+	
+	// La méthode "checkMove" est ABSTRAITE,
+	// puisque pour chaque pièce nous avant des règles de mouvement different.
+	public abstract boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill);
 
 	// On SURCHARGE la méthode "toString" pour qu'elle retourne juste un caractère
 	//

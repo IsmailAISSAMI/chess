@@ -21,4 +21,8 @@ public class Queen extends Piece {
 		return "D" + super.toString();
 	}
 
+	@Override
+	public boolean checkMove( int originX, int originY, int targetX, int targetY, boolean toKill) {
+		return false;
+	}
 }
