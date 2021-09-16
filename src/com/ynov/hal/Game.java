@@ -31,6 +31,7 @@ public class Game {
 				
 				System.out.println("les blancs déplacent la pièce...");
 				target = this.waitForTarget(origin);
+				
 			}
 
 			this.movePiece(origin, target);
@@ -112,10 +113,14 @@ public class Game {
             return null;
         }
 		else {
+			
 			boolean canMove = origin.getPiece().checkMove(origin.getX(), origin.getY(), x, y, toKill, board);
+			
 			if(canMove) {
 				cell.select();
 				board.display();
+				// Test
+				isKingCheck(origin.getPiece().getColor(), board);
 				return cell;
 			} else {
 				System.out.println("[ERROR] Faux mouvement.");
@@ -123,6 +128,64 @@ public class Game {
 			}
 			
 		}
+	}
+	
+	// Vérification si le roi est menacé par une pièce d'adversaire.
+	private boolean isKingCheck(ChessColor white, Chessboard board) {
+		Cell lambda=null, bk=null, wk=null; // bk= black king, wk= white king
+		int xb=-1, yb=-1, xw=-1, yw=-1, i,j; // si la position des roi est toujours égale à -1 ça veut dire que j'ai une erreur.
+		boolean canMove;
+		// Chercher la position des rois sur le plateau du jeu.
+		System.out.println("[INFO] Recherche des positions des rois.");
+		for (int x = 0; x < 8; x++) {
+			for (int y = 0; y < 8; y++) {
+				lambda = board.getCell(x,y);
+				if(lambda.getPiece()!=null) {
+					if(lambda.getPiece().toString().equals("Rb")) {
+						System.out.println("[INFO] Le roi blanc est trouvé.");
+						wk= board.getCell(x,y);
+						xw= x;
+						yw= y;
+					} else if (lambda.getPiece().toString().equals("Rn")) {
+						System.out.println("[INFO] Le roi noir est trouvé.");
+						bk= board.getCell(x,y);;
+						xb= x;
+						yb= y;
+					}
+				}
+			}
+		}
+		System.out.println("[INFO] Le roi blanc est à la position X="+xw+" y="+yw+".");
+		System.out.println("[INFO] Le roi noir est à la position X="+xb+" y="+yb+".");
+
+		if(white==ChessColor.WHITE) { // Le cas du roi blanc sous menace. 
+			System.out.println("[INFO] Vérification si le Roi BLANC est sous menace.");
+			
+		}
+		else if (white==ChessColor.BLACK) { // Le cas du roi noir sous menace.
+			System.out.println("[INFO] Vérification si le Roi NOIR est sous menace.");
+			
+			for (int x = 0; x < 8; x++) {
+				for (int y = 0; y < 8; y++) {
+					lambda = board.getCell(x,y);
+					if(lambda.getPiece()!=null && lambda.getPiece().getColor()==ChessColor.BLACK) {
+						// Vérifier si un Pawn noir menace le roi.
+						if(lambda.getPiece().toString().equals("Pn")) {
+							// Vérifier si le roi est en position Kill du adversaire.
+							System.out.println("[INFO] Vérification si le PAWN à la pos=("+x+", "+y+") menace le roi à la pos=("+xw+", "+yw+").");
+							/*canMove = lambda.getPiece().checkMove(x, y, xw, yw, true, board);
+							if(canMove==true) {
+								System.out.println("[RESULT] "+canMove);	
+							}*/
+							if((x-1==xw && y-1==yw) || (x+1==xw && y-1==yw)) {
+								System.out.println("[RESULT] TRUE!!!!!!!!");
+							}
+						}
+					}
+				}
+			}	
+		}
+		return false;
 	}
 
 	private void movePiece(Cell origin, Cell target) {

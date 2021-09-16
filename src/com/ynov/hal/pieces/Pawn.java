@@ -28,7 +28,7 @@ public class Pawn extends Piece {
         int y = originY - targetY;
         int specialCase = Math.abs(originY - targetY);
         
-        if(toKill) {
+        if(toKill==true) {
         	if(Math.abs(y)==1 && x==1) {
             	return true;
             }
@@ -36,7 +36,7 @@ public class Pawn extends Piece {
         else {
         	// Cas spéciale, puisque au début de la partie, nous avons la possibilité d'avancer avec 2 cases ou 1 seule
             // selon le choix du joueur. 
-            System.out.println("[CALC] x="+x+", y="+y+" - Pawn");
+            // System.out.println("[CALC] x="+x+", y="+y+" - Pawn");
             if(specialCase==2  && (originY==1||originY==6)) {
             	return true;
             }
